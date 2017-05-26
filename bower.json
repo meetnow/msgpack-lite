@@ -1,7 +1,8 @@
 {
-  "name": "msgpack-lite",
-  "description": "Fast Pure JavaScript MessagePack Encoder and Decoder",
+  "name": "msgpack-long-lite",
+  "description": "Fast Pure JavaScript MessagePack Encoder and Decoder using long.js",
   "authors": [
+    "@meetnow",
     "@kawanet"
   ],
   "license": "MIT",
@@ -17,9 +18,10 @@
     "stream",
     "typedarray",
     "arraybuffer",
-    "uint8array"
+    "uint8array",
+    "long"
   ],
-  "homepage": "https://github.com/kawanet/msgpack-lite",
+  "homepage": "https://github.com/meetnow/msgpack-long-lite",
   "ignore": [
     ".*",
     "Makefile",

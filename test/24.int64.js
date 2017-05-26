@@ -2,9 +2,7 @@
 
 /*jshint -W053 */
 
-var Int64Buffer = require("int64-buffer");
-var Uint64BE = Int64Buffer.Uint64BE;
-var Int64BE = Int64Buffer.Int64BE;
+var Long = require("long");
 
 var assert = require("assert");
 var msgpackJS = "../index";
@@ -21,11 +19,11 @@ describe(TITLE, function() {
     options.codec = codec;
   });
 
-  it("Uint64BE", function() {
+  it("Long unsigned", function() {
     [
       0, 1, Math.pow(2, 16), Math.pow(2, 32), Math.pow(2, 48)
     ].forEach(function(value) {
-      var source = Uint64BE(value);
+      var source = Long.fromNumber(value, true);
       assert.equal(+source, value);
       var encoded = msgpack.encode(source, options);
       assert.equal(encoded[0], 0xcf);
@@ -37,7 +35,7 @@ describe(TITLE, function() {
     [
       "0", "1", "123456789abcdef0", "fedcba9876543210"
     ].forEach(function(value) {
-      var source = Uint64BE(value, 16);
+      var source = Long.fromString(value, true, 16);
       assert.equal(source.toString(16), value);
       var encoded = msgpack.encode(source, options);
       assert.equal(encoded[0], 0xcf);
@@ -47,12 +45,12 @@ describe(TITLE, function() {
     });
   });
 
-  it("Int64BE", function() {
+  it("Long signed", function() {
     [
       0, 1, Math.pow(2, 16), Math.pow(2, 32), Math.pow(2, 48),
       -1, -Math.pow(2, 16), -Math.pow(2, 32), -Math.pow(2, 48)
     ].forEach(function(value) {
-      var source = Int64BE(value);
+      var source = Long.fromNumber(value);
       assert.equal(+source, value);
       var encoded = msgpack.encode(source, options);
       assert.equal(encoded[0], 0xd3);
@@ -64,7 +62,7 @@ describe(TITLE, function() {
     [
       "0", "1", "-1", "123456789abcdef0", "-123456789abcdef0"
     ].forEach(function(value) {
-      var source = Int64BE(value, 16);
+      var source = Long.fromString(value, false, 16);
       assert.equal(source.toString(16), value);
       var encoded = msgpack.encode(source, options);
       assert.equal(encoded[0], 0xd3);

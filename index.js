@@ -1,4 +1,4 @@
-// msgpack.js
+// msgpack-long.js
 
 exports.encode = require("./lib/encode").encode;
 exports.decode = require("./lib/decode").decode;

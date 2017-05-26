@@ -1,16 +1,14 @@
 {
-  "name": "msgpack-lite",
-  "description": "Fast Pure JavaScript MessagePack Encoder and Decoder",
-  "version": "0.1.26",
-  "author": "@kawanet",
-  "bin": {
-    "msgpack": "./bin/msgpack"
-  },
+  "name": "msgpack-long-lite",
+  "description": "Fast Pure JavaScript MessagePack Encoder and Decoder using long.js",
+  "version": "0.1.0",
+  "author": "@meetnow",
   "browser": "lib/browser.js",
   "bugs": {
-    "url": "https://github.com/kawanet/msgpack-lite/issues"
+    "url": "https://github.com/meetnow/msgpack-long-lite/issues"
   },
   "contributors": [
+    "Yusuke Kawasaki <u-suke@kawa.net>",
     "Christopher Vermilion <chris@figlyinc.com>",
     "Frederik Dudzik <4004blog@gmail.com>",
     "Garrett Serack <gserack@gmail.com>",
@@ -21,7 +19,7 @@
   "dependencies": {
     "event-lite": "^0.1.1",
     "ieee754": "^1.1.8",
-    "int64-buffer": "^0.1.9",
+    "long": "^3.2.0",
     "isarray": "^1.0.0"
   },
   "devDependencies": {
@@ -31,10 +29,9 @@
     "jshint": "^2.9.3",
     "mocha": "^3.1.2",
     "msgpack.codec": "git+https://github.com/kawanet/msgpack-javascript.git#msgpack.codec",
-    "uglify-js": "^2.7.3",
-    "zuul": "^3.11.1"
+    "uglify-js": "^2.7.3"
   },
-  "homepage": "https://github.com/kawanet/msgpack-lite",
+  "homepage": "https://github.com/meetnow/msgpack-long-lite",
   "jshintConfig": {
     "es3": true,
     "globals": {
@@ -56,21 +53,22 @@
     "serialize",
     "stream",
     "typedarray",
-    "uint8array"
+    "uint8array",
+    "long"
   ],
   "license": "MIT",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kawanet/msgpack-lite.git"
+    "url": "https://github.com/meetnow/msgpack-long-lite.git"
   },
   "scripts": {
     "benchmark": "./lib/benchmark.js",
-    "benchmark-lite": "./lib/benchmark.js msgpack-lite",
+    "benchmark-lite": "./lib/benchmark.js msgpack-long-lite",
     "benchmark-stream": "./lib/benchmark-stream.js",
     "fixpack": "fixpack",
     "make": "make",
-    "size": "make clean dist/msgpack.min.js && gzip -9fkv dist/msgpack.min.js && ls -l dist",
+    "size": "make clean dist/longmsgpack.min.js && gzip -9fkv dist/longmsgpack.min.js && ls -lh dist",
     "test": "make test",
     "test-browser-local": "make test-browser-local"
   }

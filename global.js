@@ -1,2 +1,2 @@
-/* globals msgpack */
-module.exports = msgpack;
+/* globals longmsgpack */
+module.exports = longmsgpack;

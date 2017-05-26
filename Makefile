@@ -5,10 +5,10 @@ LIB=./index.js ./lib/*.js
 TESTS=./test/*.js
 TESTS_BROWSER=./test/[12]?.*.js
 HINTS=$(LIB) $(TESTS) ./*.json ./test/*.json
-CLASS=msgpack
+CLASS=longmsgpack
 DIST=./dist
-JSTEMP=./dist/msgpack.browserify.js
-JSDEST=./dist/msgpack.min.js
+JSTEMP=./dist/longmsgpack.browserify.js
+JSDEST=./dist/longmsgpack.min.js
 
 all: test $(JSDEST)
 
@@ -23,7 +23,7 @@ $(JSTEMP): $(LIB) $(DIST)
 
 $(JSDEST): $(JSTEMP)
 	./node_modules/.bin/uglifyjs $(JSTEMP) -c -m -r Buffer -o $(JSDEST)
-	ls -l $(JSDEST)
+	ls -lh $(JSDEST)
 
 test:
 	@if [ "x$(BROWSER)" = "x" ]; then make test-node; else make test-browser; fi
@@ -35,12 +35,6 @@ jshint:
 	./node_modules/.bin/jshint $(HINTS)
 
 test-node: jshint mocha
-
-test-browser: $(JSDEST)
-	./node_modules/.bin/zuul -- $(TESTS_BROWSER)
-
-test-browser-local: $(JSDEST)
-	./node_modules/.bin/zuul --local 4000 -- $(TESTS_BROWSER)
 
 bench:
 	node lib/benchmark.js 1
